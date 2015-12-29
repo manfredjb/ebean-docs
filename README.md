@@ -3,9 +3,9 @@ Sección de cómo mapear los modelos.
 
 ###@Id
 Cuando el id de la columna tiene un nombre diferente del defecto por ebean.
-```mysql
+```sql
 create table monos(
-    id_mono int not null primary key autoincrement,
+    id_mono int not null primary key auto_increment,
 ```
 
 Definición:
@@ -21,7 +21,7 @@ Ejemplos de relaciones.
 
 ###@OneToOne
 Un país tiene una bandera.
-```mysql
+```sql
 -- tabla de banderas
 create table banderas(
     id_bandera int not null primary key auto_increment,
@@ -57,5 +57,47 @@ public class Pais{
     private Bandera bandera;
   ```
 
+###@OneToMany bidireccional
+Una automóvil tiene muchos pasajeros.
+```sql
+-- tabla de automóviles
+create table automoviles(
+    id_automovil int not null primary key auto_increment,
+    
+-- tabla de pasajeros
+create table pasajeros(
+    id_pasajero int not null primary key auto_increment,
+    automovil int not null,
+);
+```
 
+Definición:
+```java
+/**
+ * Clase Automovil
+ */
+public class Automovil{
 
+    @Id
+    @Column(name="id_automovil")
+    private int id;
+    
+    @OneToMany(mappedBy = "automovil")
+    private List<Pasajero> pasajeros;
+```
+
+> **mappedBy = "automovil"** contiene el nombre del columna que referencia al padre desde la tabla hija.
+ 
+```java   
+/**
+ * Clase Pasajero
+ */
+public class Pasajero{
+
+    @Id
+    @Column(name="id_pasajero")
+    private int id;
+    
+    @ManyToOne
+    @JoinColumn(name = "automovil", referencedColumnName = "id_automovil")
+    private Automovil automovil;
