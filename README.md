@@ -101,3 +101,49 @@ public class Pasajero{
     @ManyToOne
     @JoinColumn(name = "automovil", referencedColumnName = "id_automovil")
     private Automovil automovil;
+```
+
+###@ManyToMany 
+Una lista de reproducción de puede tener muchas canciones, y una canción puede pertenecer a muchas listas de reproducción.
+```sql
+-- tabla de listas de reproducción
+create table listas_reproduccion(
+    id_lista int not null primary key auto_increment,
+    
+-- tabla de listas de canciones
+create table canciones(
+    id_cancion int not null primary key auto_increment,
+    
+-- table intermedia de referencias
+create table canciones_enlistadas(
+    id_cancion_enlistada int not null primary key auto_increment, -- evitar duplicados
+    cancion int not null,
+    lista int not null
+);
+```
+Definición:
+```java   
+/**
+ * Clase Canción
+ */
+public class Cancion{
+
+    @Id
+    @Column(name="id_cancion")
+    
+/**
+ * Clase ListaReproduccion
+ */
+public class ListaReproduccion{
+
+    @Id
+    @Column(name="id_lista_reproduccion")
+    
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(name="canciones_enlistadas",
+        joinColumns=
+            @JoinColumn(name="lista", referencedColumnName="id_lista"),
+        inverseJoinColumns=
+            @JoinColumn(name="cancion", referencedColumnName="id_cancion"))
+    private List<Cancion> canciones;
+```
