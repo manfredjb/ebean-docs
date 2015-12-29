@@ -131,6 +131,12 @@ public class Cancion{
     @Id
     @Column(name="id_cancion")
     
+    @ManyToMany(mappedBy = "lista")
+    private List<ListaReproduccion> listas;
+```
+> **mappedBy = "canciones"** contiene en padre el nombre de la lista de los hijos
+
+```java 
 /**
  * Clase ListaReproduccion
  */
@@ -147,3 +153,10 @@ public class ListaReproduccion{
             @JoinColumn(name="cancion", referencedColumnName="id_cancion"))
     private List<Cancion> canciones;
 ```
+
+##Manejo de excepciones
+Causas de algunas excepciones.
+
+* java.lang.RuntimeException: java.lang.NoSuchMethodException: com.monkey.models.Join.<init>()
+
+  > La clase/modelo Join no tiene el contructor por defecto
