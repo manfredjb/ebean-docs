@@ -57,7 +57,7 @@ public class Pais{
     private Bandera bandera;
   ```
 
-###@OneToMany bidireccional
+###@OneToMany
 Una automóvil tiene muchos pasajeros.
 ```sql
 -- tabla de automóviles
@@ -72,6 +72,23 @@ create table pasajeros(
 ```
 
 Definición:
+```java
+/**
+ * Clase Automovil
+ */
+public class Automovil{
+
+    @Id
+    @Column(name="id_automovil")
+    private int id;
+    
+    @OneToMany
+    @JoinColumn(name = "automovil", referencedColumnName = "id_automovil")
+    private List<Pasajero> pasajeros;
+```
+    
+###@OneToMany bidireccional
+Usando el mismo ejemplo y estructura de la base de datos del ejemplo pasado.
 ```java
 /**
  * Clase Automovil
@@ -103,7 +120,7 @@ public class Pasajero{
     private Automovil automovil;
 ```
 
-###@ManyToMany 
+###@ManyToMany bidireccional
 Una lista de reproducción de puede tener muchas canciones, y una canción puede pertenecer a muchas listas de reproducción.
 ```sql
 -- tabla de listas de reproducción
