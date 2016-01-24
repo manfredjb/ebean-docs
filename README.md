@@ -174,6 +174,12 @@ public class ListaReproduccion{
 ##Manejo de excepciones
 Causas de algunas excepciones.
 
-* java.lang.RuntimeException: java.lang.NoSuchMethodException: com.monkey.models.Join.<init>()
+* La clase/modelo Join no tiene el contructor por defecto:
+    
+    > java.lang.RuntimeException: java.lang.NoSuchMethodException: com.monkey.models.Join.<init>()
 
-  > La clase/modelo Join no tiene el contructor por defecto
+* La clase/modelo Preference no tiene el contructor por defecto o su constructor por defecto está vacío:
+
+    > Caused by: com.avaje.ebean.ValidationException: validation failed for: com.monkey.models.Preference
+
+
