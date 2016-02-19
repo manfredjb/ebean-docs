@@ -171,6 +171,11 @@ public class ListaReproduccion{
     private List<Cancion> canciones;
 ```
 
+##Consideraciones
+Las siguientes consideraciones previenen errores y dan robustez al proyecto.
+
+1. Siempre llamar a los valores de los atributos por los métodos set y get, en especial cuando se tratan de relaciones.
+
 ##Manejo de excepciones
 Causas de algunas excepciones.
 
