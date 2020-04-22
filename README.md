@@ -1,7 +1,7 @@
-##Mapeo
+## Mapeo
 Sección de cómo mapear los modelos.
 
-###@Id
+### @Id
 Cuando el id de la columna tiene un nombre diferente del defecto por ebean.
 ```sql
 create table monos(
@@ -16,10 +16,10 @@ private int id;
 ```
 
 
-##Relaciones
+## Relaciones
 Ejemplos de relaciones.
 
-###@OneToOne
+### @OneToOne
 Un país tiene una bandera.
 ```sql
 -- tabla de banderas
@@ -57,7 +57,7 @@ public class Pais{
     private Bandera bandera;
   ```
 
-###@OneToMany
+### @OneToMany
 Una automóvil tiene muchos pasajeros.
 ```sql
 -- tabla de automóviles
@@ -87,7 +87,7 @@ public class Automovil{
     private List<Pasajero> pasajeros;
 ```
     
-###@OneToMany bidireccional
+### @OneToMany bidireccional
 Usando el mismo ejemplo y estructura de la base de datos del ejemplo pasado.
 ```java
 /**
@@ -120,7 +120,7 @@ public class Pasajero{
     private Automovil automovil;
 ```
 
-###@ManyToMany bidireccional
+### @ManyToMany bidireccional
 Una lista de reproducción de puede tener muchas canciones, y una canción puede pertenecer a muchas listas de reproducción.
 ```sql
 -- tabla de listas de reproducción
@@ -171,12 +171,12 @@ public class ListaReproduccion{
     private List<Cancion> canciones;
 ```
 
-##Consideraciones
+## Consideraciones
 Las siguientes consideraciones previenen errores y dan robustez al proyecto.
 
 1. Siempre llamar a los valores de los atributos por los métodos set y get, en especial cuando se tratan de relaciones.
 
-##Manejo de excepciones
+## Manejo de excepciones
 Causas de algunas excepciones.
 
 * La clase/modelo Join no tiene el contructor por defecto:
